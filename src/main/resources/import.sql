@@ -1,0 +1,16 @@
+insert into countries (country, code) values ('Philippines', 'PH') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Ecuador', 'EC') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Venezuela', 'VE') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Russia', 'RU') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Finland', 'FI') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('China', 'CN') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Peru', 'PE') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Sweden', 'SE') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Sweden', 'SE') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Pakistan', 'PK') ON CONFLICT (country) DO NOTHING;
+insert into countries (country, code) values ('Indonesia', 'ID') ON CONFLICT (country) DO NOTHING;
+insert into document_types (doc_type) values ('DNI');
+insert into document_types (doc_type) values ('Pasaporte');
+insert into document_types (doc_type) values ('Libreta de enrolamiento');
+insert into document_types (doc_type) values ('Libreta Cívica');
+--insert into clients (first_name, last_name, email, phone, address, city, country_id, document_type_id, document_number, birth_date, registration_date, is_active, gender) values ('Marsiella', 'Pearsall', 'mpearsall0@businesswire.com', '+52 (271) 695-7899', '47 Muir Avenue', 'Reforma', 1, 1, 41186558, '1975-09-05 04:10:31', '2023-11-25 04:57:18', true, 'Female');

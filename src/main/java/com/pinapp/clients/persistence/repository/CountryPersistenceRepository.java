@@ -24,7 +24,7 @@ public class CountryPersistenceRepository implements CountryRepository {
     }
 
     @Override
-    public CountryDTO getById(long id) {
+    public CountryDTO getById(int id) {
         return countryMapper.toDTO(countryCrud.findById(id).orElse(null));
     }
 

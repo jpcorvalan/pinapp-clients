@@ -60,7 +60,7 @@ public class ClientService {
         CountryDTO country = Optional.ofNullable(countryRepository.getById(countryId))
                 .orElseThrow(() -> new CountryNotFoundException(countryId));
 
-        return new CountryPartialDTO(country.id(), country.country(), country.code());
+        return new CountryPartialDTO(country.getId(), country.getCountry(), country.getCode());
     }
 
     private DocumentTypePartialDTO findDocumentType(ClientDTO client) {
@@ -69,7 +69,7 @@ public class ClientService {
         DocumentTypeDTO documentTypeDTO = Optional.ofNullable(documentTypeRepository.getById(documentId))
                 .orElseThrow(() -> new DocumentTypeNotFoundException(documentId));
 
-        return new DocumentTypePartialDTO(documentTypeDTO.id(), documentTypeDTO.docType());
+        return new DocumentTypePartialDTO(documentTypeDTO.getId(), documentTypeDTO.getDocType());
     }
 
     private Integer calculateAge(LocalDate birthDate) {

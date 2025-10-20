@@ -15,7 +15,7 @@ public class CountryService {
         this.countryRepository = countryRepository;
     }
 
-    public CountryDTO getById(long id) {
+    public CountryDTO getById(int id) {
         return countryRepository.getById(id);
     }
 

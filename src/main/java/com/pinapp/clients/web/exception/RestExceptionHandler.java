@@ -5,6 +5,7 @@ import com.pinapp.clients.domain.exception.CountryNotFoundException;
 import com.pinapp.clients.domain.exception.DocumentTypeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,22 +26,33 @@ public class RestExceptionHandler {
         Map<String, String> errors = new HashMap<>();
         errors.put("error", ex.getMessage());
 
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.NOT_FOUND.value(), errors, LocalDateTime.now());
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.NOT_FOUND.value(), errors, LocalDateTime.now().toString());
 
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleArgumentNotValid(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ApiErrorResponse> handleArgumentNotValid(MethodArgumentNotValidException ex) {
         HashMap<String, String> mappedErrors = new HashMap<>();
 
-        for (FieldError validation : exception.getFieldErrors()) {
+        for (FieldError validation : ex.getFieldErrors()) {
             mappedErrors.put(validation.getField(), validation.getDefaultMessage());
         }
 
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST.value(), mappedErrors, LocalDateTime.now());
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST.value(), mappedErrors, LocalDateTime.now().toString());
 
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ApiErrorResponse> handleBadCredentialsException(BadCredentialsException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("error", ex.getMessage());
+
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED.value(), errors, LocalDateTime.now().toString());
+
+        return new ResponseEntity<>(apiErrorResponse, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
@@ -48,7 +60,7 @@ public class RestExceptionHandler {
         Map<String, String> errors = new HashMap<>();
         errors.put("error", ex.getMessage());
 
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), errors, LocalDateTime.now());
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), errors, LocalDateTime.now().toString());
 
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }

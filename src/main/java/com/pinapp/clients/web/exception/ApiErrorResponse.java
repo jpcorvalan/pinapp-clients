@@ -6,6 +6,6 @@ import java.util.Map;
 public record ApiErrorResponse(
         int status,
         Map<String, String> message,
-        LocalDateTime timestamp
+        String timestamp
 ) {
 }

@@ -9,5 +9,5 @@ import java.util.Set;
 public class DocumentTypeDTO {
     private Integer id;
     private String docType;
-    private Set<ClientPartialDTO> client;
+    private Set<ClientPartialDTO> clients;
 }

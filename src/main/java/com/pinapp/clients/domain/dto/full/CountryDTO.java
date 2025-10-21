@@ -10,5 +10,5 @@ public class CountryDTO {
     private Integer id;
     private String country;
     private String code;
-    private Set<ClientPartialDTO> client;
+    private Set<ClientPartialDTO> clients;
 }

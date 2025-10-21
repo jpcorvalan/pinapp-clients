@@ -2,6 +2,7 @@ package com.pinapp.clients.domain.service;
 
 import com.pinapp.clients.domain.dto.full.CountryDTO;
 import com.pinapp.clients.domain.dto.partial.CountryPartialDTO;
+import com.pinapp.clients.domain.exception.CountryNotFoundException;
 import com.pinapp.clients.domain.repository.CountryRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,11 @@ public class CountryService {
     }
 
     public CountryDTO getById(int id) {
-        return countryRepository.getById(id);
+        CountryDTO countryDTO = countryRepository.getById(id);
+
+        if(countryDTO == null) throw new CountryNotFoundException(id);
+
+        return countryDTO;
     }
 
     public List<CountryPartialDTO> getAll() {

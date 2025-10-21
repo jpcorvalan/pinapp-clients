@@ -2,6 +2,7 @@ package com.pinapp.clients.domain.service;
 
 import com.pinapp.clients.domain.dto.full.DocumentTypeDTO;
 import com.pinapp.clients.domain.dto.partial.DocumentTypePartialDTO;
+import com.pinapp.clients.domain.exception.DocumentTypeNotFoundException;
 import com.pinapp.clients.domain.repository.DocumentTypeRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,11 @@ public class DocumentTypeService {
     }
 
     public DocumentTypeDTO getById(int id) {
-        return documentTypeRepository.getById(id);
+        DocumentTypeDTO documentTypeDTO = documentTypeRepository.getById(id);
+
+        if(documentTypeDTO == null) throw new DocumentTypeNotFoundException(id);
+
+        return documentTypeDTO;
     }
 
     public Set<DocumentTypePartialDTO> getAll() {

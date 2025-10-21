@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
-@RestController
-@RequestMapping("/document-types")
 @Tag(
         name = "Documents",
         description = "Endpoints para consultar los tipos de documento válidos (por ejemplo, DNI, Pasaporte, etc.)."
 )
 @SecurityRequirement(name = "basicAuth")
+@RestController
+@RequestMapping("/document-types")
 public class DocumentTypeController {
 
     private final DocumentTypeService documentTypeService;

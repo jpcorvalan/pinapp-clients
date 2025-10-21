@@ -2,7 +2,7 @@
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
-RUN mvn -DskipTests clean package
+RUN mvn clean package
 
 # Etapa 2: Runtime con JDK 21 (ejecución)
 FROM eclipse-temurin:21-jre

@@ -37,13 +37,11 @@ Maven (tener libre el puerto 8080):
 ## Despliegue en la nube (GCP)
 
 La aplicación está desplegada en Google Cloud Platform (GCP) mediante Cloud Run, bajo la siguiente URL:
-```
-https://clients-api-156073003419.southamerica-east1.run.app/pinapp/api/
-```
+- https://clients-api-156073003419.southamerica-east1.run.app/pinapp/api/
+
 Para probar que efectivamente está subido y online, ingresar al siguiente endpoint
-```
-https://clients-api-156073003419.southamerica-east1.run.app/pinapp/api/actuator/health
-```
+- https://clients-api-156073003419.southamerica-east1.run.app/pinapp/api/actuator/health
+
 ## Seguridad
 La aplicación cuenta con seguridad y autenticación de usuarios básica, brindada por Spring Security, se explica a continuación como hacer cualquier request en los endpoints publicados:
 
